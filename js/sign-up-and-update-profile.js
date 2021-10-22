@@ -49,8 +49,8 @@ const puppeteer = require('puppeteer');
 
   const inputUploadHandle = await page.$('input[type=file]');
 
-  // let fileToUpload = '../img/Jodhpur Blue City Giuliano small square.jpg';
-  let fileToUpload = '../img/ChaseProfilePhoto.png';
+  // let fileToUpload = '../img/profile-photos/giuliano-profile-photo.jpg';
+  let fileToUpload = '../img/profile-photos/chase-profile-photo.png';
 
   inputUploadHandle.uploadFile(fileToUpload);
 
