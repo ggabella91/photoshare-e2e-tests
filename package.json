@@ -1,0 +1,14 @@
+{
+  "name": "photoshare-e2e-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/puppeteer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Giuliano Gabella",
+  "license": "ISC",
+  "devDependencies": {
+    "puppeteer": "^10.4.0"
+  }
+}
