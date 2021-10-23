@@ -56,5 +56,5 @@ const puppeteer = require('puppeteer');
   await page.waitForSelector('.submit-button');
   await page.click('.submit-button');
 
-  // await browser.close();
+  await browser.close();
 })();
