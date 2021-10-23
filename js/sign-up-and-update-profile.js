@@ -16,11 +16,12 @@ const puppeteer = require('puppeteer');
   );
 
   await page.goto('https://photo-share.dev/', {});
-  // await page.type('[name=username]', 'chasechronicles', { delay: 50 });
-  // await page.type('[name=name]', 'Chase Yang', { delay: 50 });
+
+  // await page.type('[name=username]', 'giuliano_gabella', { delay: 50 });
+  // await page.type('[name=name]', 'Giuliano Gabella', { delay: 50 });
   // await page.type(
   //   '.sign-up-form > .group > [name=email]',
-  //   'chasechronicles@test.com',
+  //   'test@test.com',
   //   { delay: 50 }
   // );
   // await page.type('.sign-up-form > .group > [name=password]', 'password', {
@@ -28,13 +29,11 @@ const puppeteer = require('puppeteer');
   // });
   // await page.type('[name=passwordConfirm]', 'password', { delay: 50 });
 
-  await page.type(
-    '.sign-in-form > .group > [name=email]',
-    'chasechronicles@test.com'
-  );
+  // await page.click('.sign-up-form > .button > .submit-button', { delay: 50 });
+
+  await page.type('.sign-in-form > .group > [name=email]', 'test@test.com');
   await page.type('.sign-in-form > .group > [name=password]', 'password');
 
-  // await page.click('.sign-up-form > .button > .submit-button', { delay: 50 });
   await Promise.all([
     page.waitForNavigation(),
     await page.click('.sign-in-form > .button > .submit-button'),
@@ -49,8 +48,8 @@ const puppeteer = require('puppeteer');
 
   const inputUploadHandle = await page.$('input[type=file]');
 
-  // let fileToUpload = '../img/profile-photos/giuliano-profile-photo.jpg';
-  let fileToUpload = '../img/profile-photos/chase-profile-photo.png';
+  let fileToUpload = '../img/profile-photos/giuliano-profile-photo.jpg';
+  // let fileToUpload = '../img/profile-photos/chase-profile-photo.png';
 
   inputUploadHandle.uploadFile(fileToUpload);
 
