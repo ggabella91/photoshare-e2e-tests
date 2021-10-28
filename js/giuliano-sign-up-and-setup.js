@@ -18,9 +18,9 @@ const fs = require('fs');
 
   await page.goto('https://photo-share.dev/', {});
 
-  await page.type('[name=username]', 'giuliano_gabella5');
+  await page.type('[name=username]', 'giuliano_gabella31');
   await page.type('[name=name]', 'Giuliano Gabella');
-  await page.type('.sign-up-form > .group > [name=email]', 'test5@test.com');
+  await page.type('.sign-up-form > .group > [name=email]', 'test31@test.com');
   await page.type('.sign-up-form > .group > [name=password]', 'password');
   await page.type('[name=passwordConfirm]', 'password');
 
@@ -57,30 +57,61 @@ const fs = require('fs');
 
   // Upload posts
 
+  // First post
+
   const postPhotosFolder = '../img/post-photos/';
 
-  let postPhotoFileNames = [];
+  await page.waitForSelector('input[type=file]', { timeout: 1000 });
 
-  fs.readdir(postPhotosFolder, (err, files) => {
-    if (err) console.log('error reading files in folder: ', err);
+  const inputUploadHandle2 = await page.$('input[type=file]');
 
-    files.forEach((file) => {
-      console.log('file: ', file);
+  await inputUploadHandle2.uploadFile(
+    '../img/post-photos/selfie-with-astronaut.jpg'
+  );
 
-      postPhotoFileNames.push(file);
-    });
-  });
+  await page.waitForSelector('.submit-button');
+  await page.click('.submit-button', { delay: 1000 });
 
-  postPhotoFileNames.forEach(async (fileName) => {
-    await page.waitForSelector('input[type=file]', { timeout: 1000 });
+  // Second post
 
-    const inputUploadHandle = await page.$('input[type=file]');
+  await page.waitForSelector('.placeholder-text');
 
-    inputUploadHandle.uploadFile(file);
+  await page.waitForSelector('input[type=file]', { timeout: 1000 });
 
-    await page.waitForSelector('.submit-button');
-    await page.click('.submit-button');
-  });
+  const inputUploadHandle3 = await page.$('input[type=file]');
+
+  await inputUploadHandle3.uploadFile('../img/post-photos/under-a-tee-pee.jpg');
+
+  await page.waitForSelector('.submit-button');
+  await page.click('.submit-button', { delay: 1000 });
+
+  // Third post
+
+  await page.waitForSelector('.placeholder-text');
+
+  await page.waitForSelector('input[type=file]', { timeout: 1000 });
+
+  const inputUploadHandle4 = await page.$('input[type=file]');
+
+  await inputUploadHandle4.uploadFile('../img/post-photos/tame-impala.jpg');
+
+  await page.waitForSelector('.submit-button');
+  await page.click('.submit-button', { delay: 1000 });
+
+  // Fourth post
+
+  await page.waitForSelector('.placeholder-text');
+
+  await page.waitForSelector('input[type=file]', { timeout: 1000 });
+
+  const inputUploadHandle5 = await page.$('input[type=file]');
+
+  await inputUploadHandle5.uploadFile(
+    '../img/post-photos/spectra-ferris-wheel-sahara-tent-nighttime.jpg'
+  );
+
+  await page.waitForSelector('.submit-button');
+  await page.click('.submit-button', { delay: 1000 });
 
   // await browser.close();
 })();
