@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -46,5 +47,30 @@ const puppeteer = require('puppeteer');
   await page.waitForSelector('.submit-button');
   await page.click('.submit-button');
 
-  await browser.close();
+  await page.click('#settings-page-tab-update-info');
+
+  await page.type('[name=bio]', 'I am the captain now');
+
+  await page.click('.submit-button.settings-button');
+
+  await Promise.all([page.waitForNavigation(), page.click('[href="/post"]')]);
+
+  // Upload posts
+
+  const postPhotosFolder = '../img/post-photos/';
+
+  fs.readdir(postPhotosFolder, (err, files) => {
+    files.forEach(async (file) => {
+      await page.waitForSelector('input[type=file]', { timeout: 1000 });
+
+      const inputUploadHandle = await page.$('input[type=file]');
+
+      inputUploadHandle.uploadFile(file);
+
+      await page.waitForSelector('.submit-button');
+      await page.click('.submit-button');
+    });
+  });
+
+  // await browser.close();
 })();
