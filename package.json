@@ -9,10 +9,10 @@
   "author": "Giuliano Gabella",
   "license": "ISC",
   "devDependencies": {
+    "fs": "^0.0.1-security",
     "puppeteer": "^10.4.0"
   },
   "dependencies": {
-    "fs": "^0.0.1-security",
     "prompt": "^1.2.0"
   }
 }

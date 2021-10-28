@@ -18,9 +18,9 @@ const fs = require('fs');
 
   await page.goto('https://photo-share.dev/', {});
 
-  await page.type('[name=username]', 'giuliano_gabella31');
+  await page.type('[name=username]', 'giuliano_gabella');
   await page.type('[name=name]', 'Giuliano Gabella');
-  await page.type('.sign-up-form > .group > [name=email]', 'test31@test.com');
+  await page.type('.sign-up-form > .group > [name=email]', 'test@test.com');
   await page.type('.sign-up-form > .group > [name=password]', 'password');
   await page.type('[name=passwordConfirm]', 'password');
 
@@ -45,13 +45,13 @@ const fs = require('fs');
   inputUploadHandle.uploadFile(fileToUpload);
 
   await page.waitForSelector('.submit-button');
-  await page.click('.submit-button');
+  await page.click('.submit-button', { delay: 100 });
 
   await page.click('#settings-page-tab-update-info');
 
   await page.type('[name=bio]', 'I am the captain now');
 
-  await page.click('.submit-button.settings-button');
+  await page.click('.submit-button.settings-button', { delay: 100 });
 
   await Promise.all([page.waitForNavigation(), page.click('[href="/post"]')]);
 
@@ -59,9 +59,10 @@ const fs = require('fs');
 
   // First post
 
-  const postPhotosFolder = '../img/post-photos/';
-
-  await page.waitForSelector('input[type=file]', { timeout: 1000 });
+  await Promise.all([
+    page.waitForSelector('.placeholder-text'),
+    page.waitForSelector('input[type=file]', { timeout: 1000 }),
+  ]);
 
   const inputUploadHandle2 = await page.$('input[type=file]');
 
@@ -70,39 +71,54 @@ const fs = require('fs');
   );
 
   await page.waitForSelector('.submit-button');
-  await page.click('.submit-button', { delay: 1000 });
+  await page.click('.submit-button', { delay: 100 });
 
   // Second post
 
-  await page.waitForSelector('.placeholder-text');
+  await Promise.all([
+    page.waitForSelector('.placeholder-text'),
+    page.waitForSelector('input[type=file]', { timeout: 1000 }),
+  ]);
 
-  await page.waitForSelector('input[type=file]', { timeout: 1000 });
+  // await page.waitForSelector('.placeholder-text');
+
+  // await page.waitForSelector('input[type=file]', { timeout: 1000 });
 
   const inputUploadHandle3 = await page.$('input[type=file]');
 
   await inputUploadHandle3.uploadFile('../img/post-photos/under-a-tee-pee.jpg');
 
   await page.waitForSelector('.submit-button');
-  await page.click('.submit-button', { delay: 1000 });
+  await page.click('.submit-button', { delay: 100 });
 
   // Third post
 
-  await page.waitForSelector('.placeholder-text');
+  await Promise.all([
+    page.waitForSelector('.placeholder-text'),
+    page.waitForSelector('input[type=file]', { timeout: 1000 }),
+  ]);
 
-  await page.waitForSelector('input[type=file]', { timeout: 1000 });
+  // await page.waitForSelector('.placeholder-text');
+
+  // await page.waitForSelector('input[type=file]', { timeout: 1000 });
 
   const inputUploadHandle4 = await page.$('input[type=file]');
 
   await inputUploadHandle4.uploadFile('../img/post-photos/tame-impala.jpg');
 
   await page.waitForSelector('.submit-button');
-  await page.click('.submit-button', { delay: 1000 });
+  await page.click('.submit-button', { delay: 100 });
 
   // Fourth post
 
-  await page.waitForSelector('.placeholder-text');
+  await Promise.all([
+    page.waitForSelector('.placeholder-text'),
+    page.waitForSelector('input[type=file]', { timeout: 1000 }),
+  ]);
 
-  await page.waitForSelector('input[type=file]', { timeout: 1000 });
+  // await page.waitForSelector('.placeholder-text');
+
+  // await page.waitForSelector('input[type=file]', { timeout: 1000 });
 
   const inputUploadHandle5 = await page.$('input[type=file]');
 
@@ -110,8 +126,19 @@ const fs = require('fs');
     '../img/post-photos/spectra-ferris-wheel-sahara-tent-nighttime.jpg'
   );
 
-  await page.waitForSelector('.submit-button');
-  await page.click('.submit-button', { delay: 1000 });
+  await Promise.all([
+    page.waitForSelector('.submit-button'),
+    page.click('.submit-button', { delay: 1000 }),
+  ]);
+
+  await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+
+  // Navigate to my-profile-page
+
+  await Promise.all([
+    page.waitForNavigation(),
+    page.click('[href="/giuliano_gabella"]'),
+  ]);
 
   // await browser.close();
 })();
