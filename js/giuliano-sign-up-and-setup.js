@@ -18,9 +18,9 @@ const fs = require('fs');
 
   await page.goto('https://photo-share.dev/', {});
 
-  await page.type('[name=username]', 'giuliano_gabella');
+  await page.type('[name=username]', 'giuliano_gabella5');
   await page.type('[name=name]', 'Giuliano Gabella');
-  await page.type('.sign-up-form > .group > [name=email]', 'test@test.com');
+  await page.type('.sign-up-form > .group > [name=email]', 'test5@test.com');
   await page.type('.sign-up-form > .group > [name=password]', 'password');
   await page.type('[name=passwordConfirm]', 'password');
 
@@ -59,17 +59,27 @@ const fs = require('fs');
 
   const postPhotosFolder = '../img/post-photos/';
 
+  let postPhotoFileNames = [];
+
   fs.readdir(postPhotosFolder, (err, files) => {
-    files.forEach(async (file) => {
-      await page.waitForSelector('input[type=file]', { timeout: 1000 });
+    if (err) console.log('error reading files in folder: ', err);
 
-      const inputUploadHandle = await page.$('input[type=file]');
+    files.forEach((file) => {
+      console.log('file: ', file);
 
-      inputUploadHandle.uploadFile(file);
-
-      await page.waitForSelector('.submit-button');
-      await page.click('.submit-button');
+      postPhotoFileNames.push(file);
     });
+  });
+
+  postPhotoFileNames.forEach(async (fileName) => {
+    await page.waitForSelector('input[type=file]', { timeout: 1000 });
+
+    const inputUploadHandle = await page.$('input[type=file]');
+
+    inputUploadHandle.uploadFile(file);
+
+    await page.waitForSelector('.submit-button');
+    await page.click('.submit-button');
   });
 
   // await browser.close();
