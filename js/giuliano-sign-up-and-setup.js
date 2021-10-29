@@ -24,8 +24,6 @@ const fs = require('fs');
   await page.type('.sign-up-form > .group > [name=password]', 'password');
   await page.type('[name=passwordConfirm]', 'password');
 
-  await page.click('.sign-up-form > .button > .submit-button');
-
   await Promise.all([
     page.waitForNavigation(),
     await page.click('.sign-up-form > .button > .submit-button'),
@@ -59,10 +57,7 @@ const fs = require('fs');
 
   // First post
 
-  await Promise.all([
-    page.waitForSelector('.placeholder-text'),
-    page.waitForSelector('input[type=file]', { timeout: 1000 }),
-  ]);
+  await page.waitForSelector('input[type=file]', { timeout: 1000 });
 
   const inputUploadHandle2 = await page.$('input[type=file]');
 
@@ -80,10 +75,6 @@ const fs = require('fs');
     page.waitForSelector('input[type=file]', { timeout: 1000 }),
   ]);
 
-  // await page.waitForSelector('.placeholder-text');
-
-  // await page.waitForSelector('input[type=file]', { timeout: 1000 });
-
   const inputUploadHandle3 = await page.$('input[type=file]');
 
   await inputUploadHandle3.uploadFile('../img/post-photos/under-a-tee-pee.jpg');
@@ -98,10 +89,6 @@ const fs = require('fs');
     page.waitForSelector('input[type=file]', { timeout: 1000 }),
   ]);
 
-  // await page.waitForSelector('.placeholder-text');
-
-  // await page.waitForSelector('input[type=file]', { timeout: 1000 });
-
   const inputUploadHandle4 = await page.$('input[type=file]');
 
   await inputUploadHandle4.uploadFile('../img/post-photos/tame-impala.jpg');
@@ -115,10 +102,6 @@ const fs = require('fs');
     page.waitForSelector('.placeholder-text'),
     page.waitForSelector('input[type=file]', { timeout: 1000 }),
   ]);
-
-  // await page.waitForSelector('.placeholder-text');
-
-  // await page.waitForSelector('input[type=file]', { timeout: 1000 });
 
   const inputUploadHandle5 = await page.$('input[type=file]');
 
@@ -138,6 +121,23 @@ const fs = require('fs');
   await Promise.all([
     page.waitForNavigation(),
     page.click('[href="/giuliano_gabella"]'),
+  ]);
+
+  await page.waitForSelector('.post-tile-image');
+
+  const postTiles = await page.$$('.post-tile-image');
+
+  console.log('postTiles: ', postTiles);
+
+  // Edit posts to add caption and location for each
+
+  // First post
+
+  await postTiles[0].click();
+
+  await Promise.all([
+    page.waitForSelector('.edit-post'),
+    page.click('.edit-post'),
   ]);
 
   // await browser.close();
