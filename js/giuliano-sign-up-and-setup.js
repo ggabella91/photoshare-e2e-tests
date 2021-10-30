@@ -127,11 +127,59 @@ const fs = require('fs');
 
   const postTiles = await page.$$('.post-tile-image');
 
-  console.log('postTiles: ', postTiles);
-
   // Edit posts to add caption and location for each
 
   // First post
+
+  await postTiles[3].click();
+
+  await Promise.all([
+    page.waitForSelector('.edit-post'),
+    page.click('.edit-post'),
+  ]);
+
+  await page.type('[name=caption]', 'Awesome times at Coachella 2019');
+  await page.type('[name=location]', 'Indio, California');
+
+  await page.click('.edit-post-button', { delay: 50 });
+
+  await page.click('.close');
+
+  // Second post
+
+  await postTiles[2].click();
+
+  await Promise.all([
+    page.waitForSelector('.edit-post'),
+    page.click('.edit-post'),
+  ]);
+
+  await page.type('[name=caption]', 'Cool capture under a tee-pee');
+  await page.type('[name=location]', 'Indio, California');
+
+  await page.click('.edit-post-button', { delay: 50 });
+
+  await page.click('.close');
+
+  // Third post
+
+  await postTiles[1].click();
+
+  await Promise.all([
+    page.waitForSelector('.edit-post'),
+    page.click('.edit-post'),
+  ]);
+
+  await page.type('[name=caption]', 'Tame Impala was amazing, yet again');
+  await page.type('[name=location]', 'Indio, California');
+
+  await page.click('.edit-post-button', { delay: 50 });
+
+  await page.click('.likes-icon');
+
+  await page.click('.close');
+
+  // Fourth post
 
   await postTiles[0].click();
 
@@ -140,5 +188,12 @@ const fs = require('fs');
     page.click('.edit-post'),
   ]);
 
-  // await browser.close();
+  await page.type('[name=caption]', "Last night at 'chella");
+  await page.type('[name=location]', 'Indio, California');
+
+  await page.click('.edit-post-button', { delay: 50 });
+
+  await page.click('.close');
+
+  await browser.close();
 })();
