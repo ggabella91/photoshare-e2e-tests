@@ -143,7 +143,7 @@ const fs = require('fs');
 
   await page.click('.edit-post-button', { delay: 50 });
 
-  await page.click('.close');
+  await page.click('.close', { delay: 50 });
 
   // Second post
 
@@ -159,7 +159,7 @@ const fs = require('fs');
 
   await page.click('.edit-post-button', { delay: 50 });
 
-  await page.click('.close');
+  await page.click('.close', { delay: 50 });
 
   // Third post
 
@@ -177,7 +177,7 @@ const fs = require('fs');
 
   await page.click('.likes-icon');
 
-  await page.click('.close');
+  await page.click('.close', { delay: 50 });
 
   // Fourth post
 
@@ -193,7 +193,7 @@ const fs = require('fs');
 
   await page.click('.edit-post-button', { delay: 50 });
 
-  await page.click('.close');
+  await page.click('.close', { delay: 50 });
 
   await browser.close();
 })();
