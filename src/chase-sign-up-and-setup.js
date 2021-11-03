@@ -47,7 +47,27 @@ const puppeteer = require('puppeteer');
   inputUploadHandle.uploadFile(fileToUpload);
 
   await page.waitForSelector('.submit-button');
-  await page.click('.submit-button');
+  await page.click('.submit-button', { delay: 100 });
 
-  await browser.close();
+  await page.click('#settings-page-tab-update-info');
+
+  await page.type('[name=bio]', 'This guy f*@%s.');
+
+  await page.click('.submit-button.settings-button', { delay: 100 });
+
+  await page.type('[name=search]', 'giu');
+
+  await page.waitForSelector('.user-suggestion-element');
+
+  await Promise.all([
+    page.waitForNavigation(),
+    page.click('.user-suggestion-element'),
+  ]);
+
+  await page.waitForSelector('.follow-profile');
+  await page.click('.follow-profile');
+
+  await Promise.all([page.waitForNavigation(), page.click('[href="/"]')]);
+
+  // await browser.close();
 })();
