@@ -26,8 +26,6 @@ const puppeteer = require('puppeteer');
   await page.type('.sign-up-form > .group > [name=password]', 'password');
   await page.type('[name=passwordConfirm]', 'password');
 
-  await page.click('.sign-up-form > .button > .submit-button');
-
   await Promise.all([
     page.waitForNavigation(),
     await page.click('.sign-up-form > .button > .submit-button'),
