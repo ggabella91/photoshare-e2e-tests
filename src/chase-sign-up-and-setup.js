@@ -53,7 +53,9 @@ const puppeteer = require('puppeteer');
 
   await page.click('.submit-button.settings-button', { delay: 100 });
 
-  await page.type('[name=search]', 'giu');
+  await page.waitForTimeout(100);
+
+  await page.type('[name=search]', 'giu', { delay: 100 });
 
   await page.waitForSelector('.user-suggestion-element');
 
@@ -64,6 +66,8 @@ const puppeteer = require('puppeteer');
 
   await page.waitForSelector('.follow-profile');
   await page.click('.follow-profile');
+
+  await page.waitForTimeout(100);
 
   await Promise.all([page.waitForNavigation(), page.click('[href="/"]')]);
 

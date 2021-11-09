@@ -27,35 +27,11 @@ const puppeteer = require('puppeteer');
     await page.click('.sign-in-form > .button > .submit-button'),
   ]);
 
-  const delay = 3000;
-  let preCount = 0;
-  let postCount = 0;
-
-  do {
-    preCount = await getCount(page);
-    console.log('preCount: ', preCount);
-    await scrollDown(page);
-    await page.waitForTimeout(delay);
-    postCount = await getCount(page);
-  } while (postCount > preCount);
-
-  await page.scrollBy(0, 100);
-
-  await page.waitForTimeout(delay);
-})();
-
-const getCount = async (page) => {
   const containerArray = await page.$$('.feed-post-container');
 
-  return containerArray.length;
-};
-
-const scrollDown = async (page) => {
-  const lastContainer = await page.$('.feed-post-container');
-
-  lastContainer.scrollIntoView({
+  await containerArray[containerArray.length - 1].scrollIntoView({
     behavior: 'smooth',
     block: 'end',
     inline: 'end',
   });
-};
+})();
