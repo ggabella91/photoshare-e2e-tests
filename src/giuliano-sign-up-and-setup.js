@@ -51,9 +51,9 @@ const fs = require('fs');
 
   await page.click('.submit-button.settings-button', { delay: 100 });
 
-  await Promise.all([page.waitForNavigation(), page.click('[href="/post"]')]);
-
   // Upload posts
+
+  await Promise.all([page.waitForNavigation(), page.click('[href="/post"]')]);
 
   // First post
 

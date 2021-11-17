@@ -71,5 +71,5 @@ const puppeteer = require('puppeteer');
 
   await Promise.all([page.waitForNavigation(), page.click('[href="/"]')]);
 
-  // await browser.close();
+  await browser.close();
 })();

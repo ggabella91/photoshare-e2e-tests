@@ -121,4 +121,6 @@ const puppeteer = require('puppeteer');
   await submitCommentButtonArray[submitCommentButtonArray.length - 4].click();
 
   await likeButtonArray[likeButtonArray.length - 4].click();
+
+  await browser.close();
 })();
