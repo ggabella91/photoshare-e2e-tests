@@ -138,7 +138,10 @@ const fs = require('fs');
     page.click('.edit-post'),
   ]);
 
-  await page.type('[name=caption]', 'Awesome times at Coachella 2019');
+  await page.type(
+    '[name=caption]',
+    'Awesome times at #Coachella 2019 #music #festival'
+  );
   await page.type('[name=location]', 'Indio, California');
 
   await page.click('.edit-post-button', { delay: 50 });
@@ -154,7 +157,10 @@ const fs = require('fs');
     page.click('.edit-post'),
   ]);
 
-  await page.type('[name=caption]', 'Cool capture under a tee-pee');
+  await page.type(
+    '[name=caption]',
+    'Cool capture under a tee-pee #photography #asbtract #coachella'
+  );
   await page.type('[name=location]', 'Indio, California');
 
   await page.click('.edit-post-button', { delay: 50 });
@@ -170,7 +176,10 @@ const fs = require('fs');
     page.click('.edit-post'),
   ]);
 
-  await page.type('[name=caption]', 'Tame Impala was amazing, yet again');
+  await page.type(
+    '[name=caption]',
+    'Tame Impala was amazing, yet again #tameimpala #coachella #music #festival'
+  );
   await page.type('[name=location]', 'Indio, California');
 
   await page.click('.edit-post-button', { delay: 50 });
@@ -188,7 +197,10 @@ const fs = require('fs');
     page.click('.edit-post'),
   ]);
 
-  await page.type('[name=caption]', "Last night at 'chella");
+  await page.type(
+    '[name=caption]',
+    "Last night at 'chella #nightphotography #coachella"
+  );
   await page.type('[name=location]', 'Indio, California');
 
   await page.click('.edit-post-button', { delay: 50 });
