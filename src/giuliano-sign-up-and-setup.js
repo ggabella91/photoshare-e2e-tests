@@ -123,9 +123,9 @@ const fs = require('fs');
     page.click('[href="/giuliano_gabella"]'),
   ]);
 
-  await page.waitForSelector('.image-overlay');
+  await page.waitForSelector('.post-tile-image');
 
-  const postTiles = await page.$$('.image-overlay');
+  const postTiles = await page.$$('.post-tile-image');
 
   // Edit posts to add caption and location for each
 
