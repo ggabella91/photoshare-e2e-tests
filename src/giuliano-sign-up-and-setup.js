@@ -131,7 +131,14 @@ const fs = require('fs');
 
   // First post
 
-  await postTiles[3].click();
+  const firstImage = postTiles[3];
+
+  await firstImage.hover();
+
+  const imageOverlays = await page.$$('.image-overlay');
+
+  const firstImageOverlay = imageOverlays[3];
+  await firstImageOverlay.evaluate((div) => div.click());
 
   await Promise.all([
     page.waitForSelector('.edit-post'),
@@ -150,7 +157,12 @@ const fs = require('fs');
 
   // Second post
 
-  await postTiles[2].click();
+  const secondImage = postTiles[2];
+
+  await secondImage.hover();
+
+  const secondImageOverlay = imageOverlays[2];
+  await secondImageOverlay.evaluate((div) => div.click());
 
   await Promise.all([
     page.waitForSelector('.edit-post'),
@@ -169,7 +181,12 @@ const fs = require('fs');
 
   // Third post
 
-  await postTiles[1].click();
+  const thirdImage = postTiles[1];
+
+  await thirdImage.hover();
+
+  const thirdImageOverlay = imageOverlays[1];
+  await thirdImageOverlay.evaluate((div) => div.click());
 
   await Promise.all([
     page.waitForSelector('.edit-post'),
@@ -190,7 +207,12 @@ const fs = require('fs');
 
   // Fourth post
 
-  await postTiles[0].click();
+  const fourthImage = postTiles[0];
+
+  await fourthImage.hover();
+
+  const fourthImageOverlay = imageOverlays[0];
+  await fourthImageOverlay.evaluate((div) => div.click());
 
   await Promise.all([
     page.waitForSelector('.edit-post'),
